@@ -63,7 +63,7 @@ class TestModels(TestCase):
         self.assertEqual(self.party1.is_sold_out, False)
         self.assertEqual(self.party2.tickets_sold, 0)
 
-        # buyer 2 gets 0 tickets for party 2
+        # buyer 3 gets 100 tickets for party 3
         buyer3 = {"buyer_name": "Jane", "id": 33}
         amount3 = 100
 
@@ -75,11 +75,11 @@ class TestModels(TestCase):
                 Exception, f"Only {rest1} tickets avlable. Sorry."
             )
 
-        def tickets_creation(self):
-            buyer1 = {"buyer_name": "Joe", "id": 12}
-            amount1 = 11
-            self.party1.sell_tickets(buyer1["id"], amount1)
+    def test_tickets_creation(self):
+        buyer1 = {"buyer_name": "Joe", "id": 12}
+        amount1 = 11
+        self.party1.sell_tickets(buyer1["id"], amount1)
 
-            all_tickets = Ticket.objects.all().count()
+        all_tickets = Ticket.objects.all().count()
 
-            self.assertEquals(all_tickets, 11)
+        self.assertEquals(all_tickets, 11)

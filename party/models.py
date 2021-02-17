@@ -13,8 +13,8 @@ class Party(models.Model):
 
     @property
     def tickets_sold(self):
-        total_tickets = Ticket.objects.filter(party=self)  # or pk ???
-        return total_tickets.count()  # or len ?
+        total_tickets = Ticket.objects.filter(party=self)
+        return total_tickets.count()
 
     @property
     def tickets_left(self):
@@ -29,7 +29,6 @@ class Party(models.Model):
 
     def sell_tickets(self, buyer_id, amount):
         if self.tickets_left >= amount and self.is_canceled is False:
-            # do while n<amount loop here
             for n in range(amount):
                 new_ticket = Ticket.objects.create(party=self, owner=buyer_id)
                 new_ticket.save()
@@ -46,11 +45,6 @@ class Ticket(models.Model):
     party = models.ForeignKey("Party", on_delete=models.CASCADE)
     owner = models.PositiveIntegerField(blank=False, null=False)
     # owner = models.ForeignKey("User", on_delete=models.CASCADE)
-
-    # @property
-    # def is_available(self):
-    #     party = Party.objects.filter(id=self.party)
-    #     # no use because of sell tickets checking cancel and tickets left already
 
 
 class Venue(models.Model):
