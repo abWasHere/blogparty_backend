@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "party.apps.PartyConfig",
+    "blog.apps.BlogConfig",
 ]
 
 REST_FRAMEWORK = {
