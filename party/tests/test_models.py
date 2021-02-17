@@ -14,7 +14,7 @@ class TestModels(TestCase):
         )
         self.venue2 = Venue.objects.create(name="The Club", capacity=100)
         self.party1 = Party.objects.create(
-            title="party1 title",
+            title="Party1 Project X",
             organizer="Audrey",
             date=self.date1,
             venue=self.venue1,
@@ -34,9 +34,12 @@ class TestModels(TestCase):
 
     def test_party_create(self):
 
-        self.assertEqual(self.party1.title, "party1 title")
+        self.assertEqual(self.party1.title, "Party1 Project X")
         self.assertEqual(self.party1.venue, self.venue1)
         self.assertEqual(self.party1.date, self.date1)
+
+    def test_party_is_assigned_slug_on_create(self):
+        self.assertEqual(self.party1.slug, "party1-project-x")
 
     def test_party_cancelation(self):
         self.party2.cancel()

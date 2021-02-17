@@ -1,8 +1,10 @@
 from django.db import models
+from django.utils.text import slugify
 
 
 class Party(models.Model):
     title = models.CharField(max_length=50, null=False, blank=False)
+    slug = models.SlugField(max_length=100, unique=True, blank=True)
     organizer = models.CharField(max_length=50, null=False, blank=False)
     # organizer = models.ForeignKey("User", on_delete=models.CASCADE)
     date = models.DateTimeField(
@@ -10,6 +12,13 @@ class Party(models.Model):
     )
     is_canceled = models.BooleanField(default=False)
     venue = models.ForeignKey("Venue", on_delete=models.CASCADE)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Party, self).save(*args, **kwargs)
+
+    # def get_absolute_url(self):
+    #     return '/' + self.slug
 
     @property
     def tickets_sold(self):
