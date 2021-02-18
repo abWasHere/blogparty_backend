@@ -7,7 +7,7 @@ from party.serializers import PartySerializer
 
 
 @api_view(["GET", "POST"])
-def party_list(req):
+def get_post_parties(req):
     if req.method == "GET":
         all_parties = Party.objects.all()
         serializer = PartySerializer(

@@ -7,7 +7,7 @@ from party.serializers import VenueSerializer
 
 
 @api_view(["GET"])
-def venue_list(req):
+def get_venues(req):
     all_venues = Venue.objects.all()
     serializer = VenueSerializer(
         all_venues, context={"request": req}, many=True
