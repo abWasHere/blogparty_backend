@@ -1,27 +1,22 @@
 from django.test import TestCase, Client
 from django.urls import reverse, resolve
 
-from party.urls import get_post_parties_url, get_venues_url
-
-# initialize the APIClient app
-client = Client()
+from party.views.party_views import get_post_parties
+from party.views.venue_views import get_venues
 
 
+# get the correct view
 class TestUrls(TestCase):
     def setUp(self):
+        self.url1 = reverse("get_post_parties_url")
+        self.url2 = reverse("get_venues_url")
 
-        pass
+    def test_get_post_parties_url_resolves(self):
+        view = resolve(self.url1)
 
-    def test_get_post_parties_url(self):
-        """
-        GET ALL PARTIES
-        """
-        # get api response
-        url = reverse('get_post_parties_url')
-        response = client.get(url)
+        self.assertEqual(view.func, get_post_parties)
 
-        # get data from db
+    def test_get_venues_url_resolves(self):
+        view = resolve(self.url2)
 
-
-    def test_venue_list_url(self):
-        pass    
+        self.assertEqual(view.func, get_venues)
