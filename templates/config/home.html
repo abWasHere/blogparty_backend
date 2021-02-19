@@ -1,0 +1,21 @@
+{% extends 'config/base.html' %} {% block content %}
+
+<h1>Welcome to BLOGPARTY API</h1>
+<b>featuring Django REST Framework</b>
+
+<p>Our API endpoints :</p>
+
+<ul>
+	<li>
+		Parties :
+		<a href="{% url 'get_post_parties_url' %}"
+			>{% url 'get_post_parties_url' %}</a
+		>
+	</li>
+	<li>
+		Venues : <a href="{% url 'get_venues_url' %}">{% url 'get_venues_url' %}</a>
+	</li>
+	<li>Blogs : <a href=""> Coming soon </a></li>
+</ul>
+
+{% endblock content %}

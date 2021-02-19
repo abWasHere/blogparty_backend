@@ -52,7 +52,7 @@ class Party(models.Model):
 
 class Ticket(models.Model):
     party = models.ForeignKey("Party", on_delete=models.CASCADE)
-    owner = models.PositiveIntegerField(blank=False, null=False)
+    owner = models.CharField(max_length=50, blank=False, null=False)
     # owner = models.ForeignKey("User", on_delete=models.CASCADE)
 
 
