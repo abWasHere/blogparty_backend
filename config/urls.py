@@ -15,8 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+<<<<<<< HEAD
+
+from .views import api_homepage
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', api_homepage, name='api_homepage'),
+=======
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+>>>>>>> eb4697e62c26c981de45a7670309b0d585f92542
     path('api/party/', include('party.urls'))
 ]
