@@ -1,5 +1,6 @@
 from datetime import datetime
 import pytz
+import json
 
 from django.test import TestCase, Client
 from django.urls import reverse
@@ -30,6 +31,22 @@ class TestViews(TestCase):
         self.url2 = reverse("get_venues_url")
         self.response2 = client.get(self.url2)
 
+        self.valid_payload1 = {
+            "title": "Post Party",
+            "organizer": "Postman",
+            "date": '2022-12-19 19:00:00.000000',
+            "venue": 1,
+        }
+        self.invalid_payload1 = {
+            "title": "",
+            "organizer": "Postman",
+            "date": '2022-12-19 19:00:00.000000',
+            "venue": 1,
+        }
+
+    """
+    PARTY TESTS
+    """
     # get api response w/ status ok
     def test_get_post_parties_GET_status_ok(self):
         self.assertEqual(self.response1.status_code, status.HTTP_200_OK)
@@ -42,9 +59,27 @@ class TestViews(TestCase):
         self.assertEqual(self.response1.data, serializer1.data)
 
     # post data
-    def test_get_post_parties_POST_status_ok(self):
-        pass
+    def test_get_post_parties_POST_valid_data(self):
+        response = client.post(
+            self.url1,
+            data=json.dumps(self.valid_payload1),
+            content_type="application/json",
+        )
 
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    def test_get_post_parties_POST_invalid_data(self):
+        response = client.post(
+            self.url1,
+            data=json.dumps(self.invalid_payload1),
+            content_type="application/json",
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    """
+    VENUE TESTS
+    """
     def test_get_venues_GET_data(self):
         venues = Venue.objects.all()
         serializer2 = VenueSerializer(venues, many=True)
