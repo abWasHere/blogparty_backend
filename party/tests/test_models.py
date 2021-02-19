@@ -66,16 +66,18 @@ class TestModels(TestCase):
         self.assertEqual(self.party1.is_sold_out, False)
         self.assertEqual(self.party2.tickets_sold, 0)
 
+    def test_party_sell_tickets_error(self):
         # buyer 3 gets 100 tickets for party 3
         buyer3 = {"buyer_name": "Jane", "id": 33}
-        amount3 = 100
+        amount3 = 200
+        rest3 = 100
 
         with self.assertRaises(Exception):
             self.party1.sell_tickets(buyer3["id"], amount3)
 
             # FIXME: this should not pass :
             self.assertEqual(
-                Exception, f"Only {rest1} tickets avlable. Sorry."
+                Exception, f"Only {rest3} tickets avlable. Sorry."
             )
 
     def test_tickets_creation(self):
