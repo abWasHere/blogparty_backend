@@ -6,7 +6,11 @@ class Blog(models.Model):
     content = models.TextField(null=False, blank=True)
     # user = models.ForeignKey("User", on_delete=models.CASCADE)
     user = models.CharField(max_length=50, blank=False, null=False)
-    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __repr__(self):
+        return self.title + " is added."
 
 
 class Tag(models.Model):
