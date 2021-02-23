@@ -3,7 +3,7 @@ import pytz
 
 from django.test import TestCase
 
-from party.models import Party, Ticket, Venue
+from ..models import Party, Ticket, Venue
 
 
 class TestModels(TestCase):

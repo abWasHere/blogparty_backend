@@ -1,8 +1,8 @@
-from django.test import TestCase, Client
+from django.test import TestCase
 from django.urls import reverse, resolve
 
-from party.views.party_views import get_post_parties
-from party.views.venue_views import get_venues
+from ..views.party_views import get_post_parties
+from ..views.venue_views import get_venues
 
 
 # get the correct view

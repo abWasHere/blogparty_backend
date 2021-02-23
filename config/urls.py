@@ -21,5 +21,6 @@ from .views import api_homepage
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', api_homepage, name='api_homepage'),
-    path('api/party/', include('party.urls'))
+    path('api/party/', include('party.urls')),
+    path('api/blog/', include('blog.urls'))
 ]

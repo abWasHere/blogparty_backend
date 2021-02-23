@@ -6,8 +6,8 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from rest_framework import status
 
-from party.models import Party, Venue, Ticket
-from party.serializers import PartySerializer, VenueSerializer
+from ..models import Party, Venue
+from ..serializers import PartySerializer, VenueSerializer
 
 client = Client()  # initialize the APIClient app
 
