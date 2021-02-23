@@ -15,7 +15,10 @@
 	<li>
 		Venues : <a href="{% url 'get_venues_url' %}">{% url 'get_venues_url' %}</a>
 	</li>
-	<li>Blogs : <a href=""> Coming soon </a></li>
+	<li>
+		Blogs :
+		<a href="{% url 'get_post_blogs' %}"> {% url 'get_post_blogs' %} </a>
+	</li>
 </ul>
 
 {% endblock content %}

@@ -1,6 +1,6 @@
 from django.urls import path
-from party.views.party_views import get_post_parties
-from party.views.venue_views import get_venues
+from .views.party_views import get_post_parties
+from .views.venue_views import get_venues
 
 
 urlpatterns = [
